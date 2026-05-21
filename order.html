@@ -287,20 +287,14 @@
   }
 
   /* How it works banner */
-  .how-it-works {
     background: white; border-radius: 16px; padding: 18px 22px; margin-bottom: 20px;
     box-shadow: 0 2px 20px rgba(0,0,0,0.06); border: 1.5px solid var(--border);
     display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; text-align: center;
     position: relative; overflow: hidden;
   }
-  .how-it-works::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
     background: linear-gradient(90deg, var(--coral), var(--pink), var(--turquoise));
   }
-  .hiw-item { flex: 1; min-width: 120px; }
-  .hiw-icon { font-size: 1.4rem; }
-  .hiw-label { font-weight: 800; font-size: 0.82rem; color: var(--dark); margin-top: 4px; }
-  .hiw-sub { font-size: 0.76rem; color: #999; font-weight: 600; margin-top: 2px; }
 </style>
 </head>
 <body>
@@ -318,13 +312,6 @@
     <div class="tagline"><span class="twinkle-inline">✨</span> PERSONALIZED. THEMED. HANDCRAFTED WITH LOVE. <span class="twinkle-inline" style="animation-delay:1s;">✨</span></div>
   </div>
 
-  <div id="form-wrap">
-
-    <!-- HOW IT WORKS -->
-    <div class="how-it-works">
-      <div class="hiw-item"><div class="hiw-icon">🎁</div><div class="hiw-label">Fully Personalized</div><div class="hiw-sub">Every guest's name on their box</div></div>
-      <div class="hiw-item"><div class="hiw-icon">📅</div><div class="hiw-label">2-Week Lead Time</div><div class="hiw-sub">Rush orders available for +$15</div></div>
-      <div class="hiw-item"><div class="hiw-icon">💛</div><div class="hiw-label">$18 Per Box</div><div class="hiw-sub">50% deposit to confirm</div></div>
     </div>
 
     <!-- YOUR INFO -->
@@ -410,7 +397,7 @@
           <input type="text" id="theme-other-text" placeholder="Tell us your theme idea! We'll reach out to discuss what's possible." oninput="document.getElementById('theme-val').value = 'Other: ' + this.value">
         </div>
         <div class="theme-note">
-          🎉 More themes coming soon — including Basketball and Hockey!<br><br>
+          🎉 More themes coming soon!<br><br>
           💭 Have a theme in mind that's not listed? Select <strong>Other</strong> above and tell us your idea, or <a href="mailto:craftdreamsco@gmail.com">email us directly</a> — we'd love to chat!<br>
           <span style="font-weight:400;">Please note: we can't replicate licensed characters (think Disney, Marvel, Paw Patrol, etc.). Original and custom themes are always welcome!</span>
         </div>
@@ -431,7 +418,7 @@
       <div class="field">
         <label>Number of Boxes <span class="required">*</span></label>
         <input type="number" id="quantity" placeholder="e.g. 12" min="1" max="50" required oninput="syncGuestCount(this.value); updateTotal(this.value);">
-        <div class="helper">Each personalized box is $18</div>
+        <div class="helper">Each personalized and filled box is $18</div>
         <div id="total-display" style="display:none;">
           <span class="price-callout" id="total-text"></span>
         </div>
