@@ -298,12 +298,14 @@
 </style>
 </head>
 <body>
-  <div style="text-align:center;padding:16px 20px 0;position:relative;z-index:1;">
-    <a href="index.html" style="font-family:Nunito,sans-serif;font-weight:800;font-size:0.85rem;color:#2EC4B6;text-decoration:none;margin:0 10px;">Home</a>
+    <div style="text-align:center;padding:16px 20px 0;position:relative;z-index:1;">
+    <a href="index.html" style="font-family:Nunito,sans-serif;font-weight:800;font-size:0.85rem;color:#2EC4B6;text-decoration:none;margin:0 8px;">Home</a>
     <span style="color:#e0d5cc;">|</span>
-    <a href="products.html" style="font-family:Nunito,sans-serif;font-weight:800;font-size:0.85rem;color:#2EC4B6;text-decoration:none;margin:0 10px;">Our Products</a>
+    <a href="products.html" style="font-family:Nunito,sans-serif;font-weight:800;font-size:0.85rem;color:#2EC4B6;text-decoration:none;margin:0 8px;">Our Products</a>
     <span style="color:#e0d5cc;">|</span>
-    <a href="order.html" style="font-family:Nunito,sans-serif;font-weight:800;font-size:0.85rem;color:#FF6B6B;text-decoration:none;margin:0 10px;">Place an Order 🎁</a>
+    <a href="order.html" style="font-family:Nunito,sans-serif;font-weight:800;font-size:0.85rem;color:#FF6B6B;text-decoration:none;margin:0 8px;">Place an Order 🎁</a>
+    <span style="color:#e0d5cc;">|</span>
+    <a href="faq.html" style="font-family:Nunito,sans-serif;font-weight:800;font-size:0.85rem;color:#2EC4B6;text-decoration:none;margin:0 8px;">FAQ</a>
   </div>
 <div class="page-wrap">
 
@@ -439,6 +441,15 @@
     <!-- ADD-ONS -->
     <div class="card">
       <div class="card-title">Add-Ons</div>
+      <div class="addon-row" id="delivery-addon-row">
+        <input type="checkbox" id="delivery-addon" onchange="handleDeliveryAddon(this)">
+        <div style="flex:1">
+          <div class="addon-label">🚗 Delivery</div>
+          <div class="addon-note">Available between Pickering and Oshawa</div>
+        </div>
+        <div class="addon-price">+$10</div>
+      </div>
+
       <div class="addon-row" id="rush-addon-row">
         <input type="checkbox" id="rush-addon" onchange="handleRushAddon(this)">
         <div style="flex:1">
@@ -482,19 +493,12 @@
 
     <button class="submit-btn" onclick="submitForm()">Send My Order Request 🎉</button>
 
-    <div class="footer-note">
-      Questions? DM us on
-      <a href="https://www.instagram.com/craftdreamsco" target="_blank">
-        <svg style="width:13px;height:13px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        Instagram
-      </a>
-      or
-      <a href="https://www.facebook.com/profile.php?id=61588907560599" target="_blank">
-        <svg style="width:13px;height:13px;" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        Facebook
-      </a>
-      💌
-    </div>
+      <div class="footer-note">
+    Questions? DM us on
+    <a href="https://www.instagram.com/craftdreamsco" target="_blank"><svg style="width:13px;height:13px;vertical-align:middle;margin-right:2px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram</a>
+    or <a href="https://www.facebook.com/profile.php?id=61588907560599" target="_blank"><svg style="width:13px;height:13px;vertical-align:middle;margin-right:2px;" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>Facebook</a>
+    or email us at <a href="mailto:craftdreamsco@gmail.com">craftdreamsco@gmail.com</a> 💌
+  </div>
 
   </div>
 
@@ -665,6 +669,7 @@
 
     const guestInputs = document.querySelectorAll('#guest-list .guest-row input');
     const guestNames = Array.from(guestInputs).map((el, i) => `Guest ${i+1}: ${el.value}`).join('\n');
+    const deliveryAddon = document.getElementById('delivery-addon').checked;
     const rushAddon = document.getElementById('rush-addon').checked;
     const qty = parseInt(document.getElementById('quantity').value);
     const total = qty * 18;
@@ -684,6 +689,7 @@
     formData.append('Order Total', `$${total}`);
     formData.append('Deposit Owing', `$${deposit}`);
     formData.append('Guest Names', guestNames);
+    formData.append('Delivery', deliveryAddon ? 'Yes (+$10 — Pickering to Oshawa)' : 'No');
     formData.append('Rush Order', rushAddon ? 'Yes (+$15)' : 'No');
     formData.append('Allergies / Dietary Restrictions', document.getElementById('allergies').value || 'None noted');
     formData.append('Additional Notes', document.getElementById('notes').value || 'None');
@@ -710,6 +716,11 @@
       btn.disabled = false;
       alert('Something went wrong. Please try again or DM us on Instagram @CraftDreamsCo');
     }
+  }
+
+  function handleDeliveryAddon(cb) {
+    const row = document.getElementById('delivery-addon-row');
+    row.classList.toggle('checked', cb.checked);
   }
 
   function handleRushAddon(cb) {
