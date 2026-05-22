@@ -426,20 +426,20 @@
     <div class="card-title">Our Themes</div>
     <p style="font-size:0.92rem;color:var(--mid);font-weight:600;line-height:1.6;margin-bottom:16px;">Tap any theme below to preview photos — each box is fully themed and personalized with each guest's name.</p>
     <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px;">
-      <div class="prod-theme-pill" data-theme="Mermaid" onclick="prodSelectTheme(this)">🧜🏾‍♀️ Mermaid</div>
-      <div class="prod-theme-pill" data-theme="Unicorn" onclick="prodSelectTheme(this)">🦄 Unicorn</div>
-      <div class="prod-theme-pill" data-theme="Dinosaur" onclick="prodSelectTheme(this)">🦕 Dinosaur</div>
-      <div class="prod-theme-pill" data-theme="Space" onclick="prodSelectTheme(this)">🚀 Space</div>
-      <div class="prod-theme-pill" data-theme="Soccer" onclick="prodSelectTheme(this)">⚽ Soccer</div>
-      <div class="prod-theme-pill" data-theme="Construction" onclick="prodSelectTheme(this)">🚧 Construction</div>
+      <div class="prod-theme-pill" data-key="Mermaid" onclick="pickTheme(this)">🧜🏾‍♀️ Mermaid</div>
+      <div class="prod-theme-pill" data-key="Unicorn" onclick="pickTheme(this)">🦄 Unicorn</div>
+      <div class="prod-theme-pill" data-key="Dinosaur" onclick="pickTheme(this)">🦕 Dinosaur</div>
+      <div class="prod-theme-pill" data-key="Space" onclick="pickTheme(this)">🚀 Space</div>
+      <div class="prod-theme-pill" data-key="Soccer" onclick="pickTheme(this)">⚽ Soccer</div>
+      <div class="prod-theme-pill" data-key="Construction" onclick="pickTheme(this)">🚧 Construction</div>
     </div>
-    <div class="theme-gallery" id="prod-theme-gallery">
+    <div class="theme-gallery" id="prod-gallery">
       <div class="gallery-label" style="margin-top:16px;">Tap a photo to enlarge</div>
-      <div class="gallery-scroll" id="prod-gallery-scroll"></div>
+      <div class="gallery-scroll" id="prod-scroll"></div>
     </div>
-    <div class="lightbox" id="prod-lightbox" onclick="prodCloseLightbox()">
-      <span class="lightbox-close" onclick="prodCloseLightbox()">✕</span>
-      <img id="prod-lightbox-img" src="" alt="Theme photo">
+    <div class="lightbox" id="prod-lb" onclick="closeLB()">
+      <span class="lightbox-close" onclick="closeLB()">✕</span>
+      <img id="prod-lb-img" src="" alt="Theme photo">
     </div>
   </div>
   <!-- HOW IT WORKS -->
@@ -529,70 +529,48 @@
 
 </div>
 
+
 <script>
-  var prodThemeImages = {
-    'Mermaid': [
-      'https://craftdreamsco.github.io/Order-Form/Mermaid%20Gable%20Box.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Mermaid%20All.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Mermaid%20Stickers.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Mermaid%20Colouring%20Book.PNG'
-    ],
-    'Unicorn': [
-      'https://craftdreamsco.github.io/Order-Form/Unicorn%20Gable%20Box.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Unicorn%20All.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Unicorn%20Stickers.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Unicorn%20Colouring%20Book.PNG'
-    ],
-    'Dinosaur': [
-      'https://craftdreamsco.github.io/Order-Form/Dino%20Theme%20Gable%20Box.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Dino%20Theme%20All.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Dino%20Theme%20Stickers.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Dino%20Theme%20Colouring%20Book.PNG'
-    ],
-    'Space': [
-      'https://craftdreamsco.github.io/Order-Form/Space%20Theme%20Gable%20Box.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Space%20Theme%20All.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Space%20Theme%20Stickers.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Space%20Theme%20Colouring%20Book.PNG'
-    ],
-    'Soccer': [
-      'https://craftdreamsco.github.io/Order-Form/Soccer%20Theme%20Gable%20Box.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Soccer%20Theme%20All.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Soccer%20Theme%20Stickers.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Soccer%20Theme%20Colouring%20Book.PNG'
-    ],
-    'Construction': [
-      'https://craftdreamsco.github.io/Order-Form/Construction%20Gable%20Box.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Construction%20Alll.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Construction%20Stickers.PNG',
-      'https://craftdreamsco.github.io/Order-Form/Construction%20Colouring%20Book.PNG'
-    ]
-  };
+var imgs = {
+  Mermaid: ['Mermaid Gable Box.PNG','Mermaid All.PNG','Mermaid Stickers.PNG','Mermaid Colouring Book.PNG'],
+  Unicorn: ['Unicorn Gable Box.PNG','Unicorn All.PNG','Unicorn Stickers.PNG','Unicorn Colouring Book.PNG'],
+  Dinosaur: ['Dino Theme Gable Box.PNG','Dino Theme All.PNG','Dino Theme Stickers.PNG','Dino Theme Colouring Book.PNG'],
+  Space: ['Space Theme Gable Box.PNG','Space Theme All.PNG','Space Theme Stickers.PNG','Space Theme Colouring Book.PNG'],
+  Soccer: ['Soccer Theme Gable Box.PNG','Soccer Theme All.PNG','Soccer Theme Stickers.PNG','Soccer Theme Colouring Book.PNG'],
+  Construction: ['Construction Gable Box.PNG','Construction Alll.PNG','Construction Stickers.PNG','Construction Colouring Book.PNG']
+};
+var base = 'https://craftdreamsco.github.io/Order-Form/';
 
-  function prodSelectTheme(el) {
-    document.querySelectorAll('.prod-theme-pill').forEach(function(p) { p.classList.remove('selected'); });
-    el.classList.add('selected');
-    var key = el.getAttribute('data-theme');
-    var images = prodThemeImages[key];
-    var gallery = document.getElementById('prod-theme-gallery');
-    var scroll = document.getElementById('prod-gallery-scroll');
-    if (!images || images.length === 0) { gallery.classList.remove('visible'); return; }
-    scroll.innerHTML = images.map(function(src) {
-      return '<img class="gallery-img" src="' + src + '" alt="' + key + '" onclick="prodOpenLightbox(this.src)">';
-    }).join('');
-    gallery.classList.add('visible');
+function pickTheme(el) {
+  var pills = document.getElementsByClassName('prod-theme-pill');
+  for (var i = 0; i < pills.length; i++) { pills[i].classList.remove('selected'); }
+  el.classList.add('selected');
+  var key = el.getAttribute('data-key');
+  var files = imgs[key];
+  var scroll = document.getElementById('prod-scroll');
+  var gallery = document.getElementById('prod-gallery');
+  scroll.innerHTML = '';
+  for (var j = 0; j < files.length; j++) {
+    var img = document.createElement('img');
+    img.src = base + files[j];
+    img.className = 'gallery-img';
+    img.alt = key;
+    img.onclick = (function(s){ return function(){ openLB(s); }; })(base + files[j]);
+    scroll.appendChild(img);
   }
+  gallery.classList.add('visible');
+}
 
-  function prodOpenLightbox(src) {
-    document.getElementById('prod-lightbox-img').src = src;
-    document.getElementById('prod-lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
+function openLB(src) {
+  document.getElementById('prod-lb-img').src = src;
+  document.getElementById('prod-lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
 
-  function prodCloseLightbox() {
-    document.getElementById('prod-lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-  }
+function closeLB() {
+  document.getElementById('prod-lb').classList.remove('open');
+  document.body.style.overflow = '';
+}
 </script>
 </body>
 </html>
