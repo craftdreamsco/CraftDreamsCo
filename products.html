@@ -271,6 +271,52 @@
     .box-grid { grid-template-columns: repeat(2, 1fr); }
     .cta-card { padding: 28px 20px; }
   }
+
+  .theme-gallery { display: none; margin-top: 16px; animation: fadeIn 0.3s ease; }
+  .theme-gallery.visible { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .gallery-label { font-size: 0.8rem; font-weight: 700; color: var(--mid); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; }
+  .gallery-scroll {
+    display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px;
+    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  }
+  .gallery-scroll::-webkit-scrollbar { height: 4px; }
+  .gallery-scroll::-webkit-scrollbar-track { background: var(--border); border-radius: 4px; }
+  .gallery-scroll::-webkit-scrollbar-thumb { background: var(--pink); border-radius: 4px; }
+  .gallery-img {
+    flex-shrink: 0; width: 160px; height: 160px; object-fit: cover;
+    border-radius: 14px; scroll-snap-align: start; border: 2px solid var(--border);
+    cursor: pointer; transition: transform 0.2s, border-color 0.2s;
+  }
+  .gallery-img:hover { transform: scale(1.03); border-color: var(--pink); }
+  .lightbox {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+    z-index: 1000; align-items: center; justify-content: center; padding: 20px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 90vh; border-radius: 16px; object-fit: contain; }
+  .lightbox-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 2rem; cursor: pointer; font-weight: 800; }
+
+  .prod-theme-pill {
+    padding: 8px 16px;
+    border: 2px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+    color: var(--mid);
+    user-select: none;
+  }
+  .prod-theme-pill:hover { border-color: var(--pink); color: var(--pink); }
+  .prod-theme-pill.selected {
+    background: linear-gradient(135deg, var(--coral), var(--pink));
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 3px 10px rgba(255,107,107,0.3);
+  }
+
 </style>
 </head>
 <body>
@@ -281,7 +327,7 @@
     <span style="color:#e0d5cc;">|</span>
     <a href="products.html" style="font-family:Nunito,sans-serif;font-weight:800;font-size:0.85rem;color:#2EC4B6;text-decoration:none;margin:0 8px;">Our Products</a>
     <span style="color:#e0d5cc;">|</span>
-    <a href="order.html" style="font-family:Nunito,sans-serif;font-weight:800;font-size:0.85rem;color:#FF6B6B;text-decoration:none;margin:0 8px;">Place an Order 🎁</a>
+    <a href="order.html" style="font-family:Nunito,sans-serif;font-weight:800;font-size:0.85rem;color:#FF6B6B;text-decoration:none;margin:0 8px;">Place an Order</a>
     <span style="color:#e0d5cc;">|</span>
     <a href="faq.html" style="font-family:Nunito,sans-serif;font-weight:800;font-size:0.85rem;color:#2EC4B6;text-decoration:none;margin:0 8px;">FAQ</a>
   </div>
@@ -294,6 +340,49 @@
     <h1>Birthday Loot Bags They'll Actually Talk About</h1>
     <p>Every guest deserves to feel like they were thoughtfully considered. Our personalized gable boxes are handcrafted one by one, themed, and packed with goodies kids genuinely love and are guaranteed to use.</p>
     <a href="order.html" class="hero-cta" style="font-size:1.3rem;">Place Your Order 🎉</a>
+  </div>
+
+  
+  <!-- WHY CRAFT DREAMS -->
+  <div class="card">
+    <div class="card-title">Why Craft Dreams Co.</div>
+    <div class="why-list">
+      <div class="why-item">
+        <div class="why-icon">🏷️</div>
+        <div class="why-text">
+          <h3>Every name. Every guest.</h3>
+          <p>No generic bags. Every single box is personalized with that child's name — because the little details are what kids remember most.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🤍</div>
+        <div class="why-text">
+          <h3>Made by hand, one at a time</h3>
+          <p>These aren't mass-produced. Each bag is assembled with care in our home workshop — which means every order gets real attention.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🌍</div>
+        <div class="why-text">
+          <h3>Every kid deserves to feel seen</h3>
+          <p>Representation matters — especially at birthday parties. Our characters and designs are created with diversity in mind, so every child who opens one of our bags feels like it could have been made for them.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">📦</div>
+        <div class="why-text">
+          <h3>Everything in one place</h3>
+          <p>Activity, snack, and something to take home — all in one beautifully packaged box. One less thing for you to worry about.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">⚡</div>
+        <div class="why-text">
+          <h3>Tight on time? We've got you.</h3>
+          <p>Standard orders ship in 2 weeks. Need it sooner? Rush orders are available for +$15 — just let us know.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- WHAT'S IN THE BOX -->
@@ -332,58 +421,27 @@
       </div>
     </div>
   </div>
-
-  <!-- WHY CRAFT DREAMS -->
+  <!-- THEME SHOWCASE -->
   <div class="card">
-    <div class="card-title">Why Craft Dreams Co.</div>
-    <div class="why-list">
-      <div class="why-item">
-        <div class="why-icon">🏷️</div>
-        <div class="why-text">
-          <h3>Every name. Every guest.</h3>
-          <p>No generic bags. Every single box is personalized with that child's name — because the little details are what kids remember most.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="why-icon">🤍</div>
-        <div class="why-text">
-          <h3>Made by hand, one at a time</h3>
-          <p>These aren't mass-produced. Each bag is assembled with care in our home workshop — which means every order gets real attention.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="why-icon">🎨</div>
-        <div class="why-text">
-          <h3>Themes kids actually love</h3>
-          <p>From mermaids to construction zones, our themes are designed to feel exciting and age-appropriate — not like an afterthought.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="why-icon">📦</div>
-        <div class="why-text">
-          <h3>Everything in one place</h3>
-          <p>Activity, snack, and something to take home — all in one beautifully packaged box. One less thing for you to worry about.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="why-icon">⚡</div>
-        <div class="why-text">
-          <h3>Tight on time? We've got you.</h3>
-          <p>Standard orders ship in 2 weeks. Need it sooner? Rush orders are available for +$15 — just let us know.</p>
-        </div>
-      </div>
+    <div class="card-title">Our Themes</div>
+    <p style="font-size:0.92rem;color:var(--mid);font-weight:600;line-height:1.6;margin-bottom:16px;">Tap any theme below to preview photos — each box is fully themed and personalized with each guest's name.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px;">
+      <div class="prod-theme-pill" data-theme="Mermaid" onclick="prodSelectTheme(this)">🧜🏾‍♀️ Mermaid</div>
+      <div class="prod-theme-pill" data-theme="Unicorn" onclick="prodSelectTheme(this)">🦄 Unicorn</div>
+      <div class="prod-theme-pill" data-theme="Dinosaur" onclick="prodSelectTheme(this)">🦕 Dinosaur</div>
+      <div class="prod-theme-pill" data-theme="Space" onclick="prodSelectTheme(this)">🚀 Space</div>
+      <div class="prod-theme-pill" data-theme="Soccer" onclick="prodSelectTheme(this)">⚽ Soccer</div>
+      <div class="prod-theme-pill" data-theme="Construction" onclick="prodSelectTheme(this)">🚧 Construction</div>
+    </div>
+    <div class="theme-gallery" id="prod-theme-gallery">
+      <div class="gallery-label" style="margin-top:16px;">Tap a photo to enlarge</div>
+      <div class="gallery-scroll" id="prod-gallery-scroll"></div>
+    </div>
+    <div class="lightbox" id="prod-lightbox" onclick="prodCloseLightbox()">
+      <span class="lightbox-close" onclick="prodCloseLightbox()">✕</span>
+      <img id="prod-lightbox-img" src="" alt="Theme photo">
     </div>
   </div>
-
-  <!-- REPRESENTATION -->
-  <div class="card">
-    <div class="card-title">Every Kid Deserves to See Themselves</div>
-    <div class="rep-block">
-      <p>We believe representation matters — especially at birthday parties, where kids are supposed to feel celebrated and seen. That's why our characters and designs are created with diversity in mind. <strong>You'll find characters with different skin tones, different looks, and different stories across our themes.</strong></p>
-      <p>Every child who opens one of our bags should feel like it could have been made for them.</p>
-    </div>
-  </div>
-
   <!-- HOW IT WORKS -->
   <div class="card">
     <div class="card-title">How It Works</div>
@@ -418,7 +476,6 @@
       </div>
     </div>
   </div>
-
   <!-- PRICING -->
   <div class="card">
     <div class="card-title">Pricing</div>
@@ -453,10 +510,9 @@
 
     <div class="notice-box">
       <div class="notice-icon">⚠️</div>
-      <p><strong>A note on licensing:</strong> We design all of our themes in-house and do not replicate licensed characters — think Disney, Marvel, Paw Patrol, and similar. This keeps our products original, ethical, and uniquely ours. Have a custom theme idea? <a href="mailto:craftdreamsco@gmail.com" style="color:var(--coral);font-weight:800;">Email us</a> — we'd love to chat about what's possible.</p>
+      <p><strong>A note on licensing:</strong> We create all of our themes in-house and do not replicate licensed characters — think Disney, Marvel, Paw Patrol, and similar. Have a custom theme idea? <a href="mailto:craftdreamsco@gmail.com" style="color:var(--coral);font-weight:800;">Email us</a> — we'd love to chat about what's possible.</p>
     </div>
   </div>
-
   <!-- CTA -->
   <div class="cta-card">
     <h2>Ready to make their party unforgettable?</h2>
@@ -472,5 +528,71 @@
   </div>
 
 </div>
+
+<script>
+  var prodThemeImages = {
+    'Mermaid': [
+      'https://craftdreamsco.github.io/Order-Form/Mermaid Gable Box.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Mermaid All.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Mermaid Stickers.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Mermaid Colouring Book.PNG'
+    ],
+    'Unicorn': [
+      'https://craftdreamsco.github.io/Order-Form/Unicorn Gable Box.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Unicorn All.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Unicorn Stickers.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Unicorn Colouring Book.PNG'
+    ],
+    'Dinosaur': [
+      'https://craftdreamsco.github.io/Order-Form/Dino Theme Gable Box.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Dino Theme All.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Dino Theme Stickers.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Dino Theme Colouring Book.PNG'
+    ],
+    'Space': [
+      'https://craftdreamsco.github.io/Order-Form/Space Theme Gable Box.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Space Theme All.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Space Theme Stickers.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Space Theme Colouring Book.PNG'
+    ],
+    'Soccer': [
+      'https://craftdreamsco.github.io/Order-Form/Soccer Theme Gable Box.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Soccer Theme All.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Soccer Theme Stickers.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Soccer Theme Colouring Book.PNG'
+    ],
+    'Construction': [
+      'https://craftdreamsco.github.io/Order-Form/Construction Gable Box.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Construction Alll.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Construction Stickers.PNG',
+      'https://craftdreamsco.github.io/Order-Form/Construction Colouring Book.PNG'
+    ]
+  };
+
+  function prodSelectTheme(el) {
+    document.querySelectorAll('.prod-theme-pill').forEach(function(p) { p.classList.remove('selected'); });
+    el.classList.add('selected');
+    var key = el.getAttribute('data-theme');
+    var images = prodThemeImages[key];
+    var gallery = document.getElementById('prod-theme-gallery');
+    var scroll = document.getElementById('prod-gallery-scroll');
+    if (!images || images.length === 0) { gallery.classList.remove('visible'); return; }
+    scroll.innerHTML = images.map(function(src) {
+      return '<img class="gallery-img" src="' + src + '" alt="' + key + '" onclick="prodOpenLightbox(this.src)">';
+    }).join('');
+    gallery.classList.add('visible');
+  }
+
+  function prodOpenLightbox(src) {
+    document.getElementById('prod-lightbox-img').src = src;
+    document.getElementById('prod-lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function prodCloseLightbox() {
+    document.getElementById('prod-lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
 </body>
 </html>
