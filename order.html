@@ -374,7 +374,10 @@
         </div>
         <div class="field">
           <label>Required Pickup Date <span class="required">*</span></label>
-          <input type="date" id="pickup-date" required onchange="validatePickupDate(this.value)">
+          <input type="date" id="pickup-date" required onchange="checkPickupDate(this.value)">
+          <div id="pickup-warning" style="display:none;margin-top:8px;padding:10px 14px;background:#FFF0F0;border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;font-size:0.83rem;font-weight:700;color:#FF6B6B;">
+            Sorry, this date is not available for pickup. Please choose another date.
+          </div>
           <div class="helper">Please allow at least 2 weeks. If your pickup date is less than 2 weeks away, please add the Rush Order add-on below (+$15).</div>
         </div>
       </div>
@@ -516,31 +519,12 @@
 
 <script>
   // ── BLOCKED DATES ──────────────────────────────────────────
-  // Add dates in YYYY-MM-DD format to block them from pickup selection.
-  // Customers will see a message if they select a blocked date.
+  // Add or remove dates in YYYY-MM-DD format as needed
   const blockedDates = [
     '2026-06-05',
     '2026-06-14',
     '2026-08-04',
   ];
-
-  function validatePickupDate(val) {
-    const pickupInput = document.getElementById('pickup-date');
-    let warning = document.getElementById('pickup-date-warning');
-    if (!warning) {
-      warning = document.createElement('div');
-      warning.id = 'pickup-date-warning';
-      warning.style.cssText = 'margin-top:8px;padding:10px 14px;background:#FFF0F0;border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;font-size:0.83rem;font-weight:700;color:#FF6B6B;display:none;';
-      pickupInput.parentNode.appendChild(warning);
-    }
-    if (blockedDates.includes(val)) {
-      warning.textContent = '⚠️ Sorry, this date isn't available for pickup. Please choose another date.';
-      warning.style.display = 'block';
-      pickupInput.value = '';
-    } else {
-      warning.style.display = 'none';
-    }
-  }
 
   // ── THEME IMAGES ────────────────────────────────────────────
   const themeImages = {
@@ -690,11 +674,7 @@
     ];
 
     const allFilled = required.every(v => v && v.trim() !== '');
-    const pickupVal = document.getElementById('pickup-date').value;
-    if (blockedDates.includes(pickupVal)) {
-      alert('The selected pickup date is not available. Please choose a different date.');
-      return;
-    }
+
     if (!allFilled) {
       alert('Please fill in all required fields before submitting.');
       return;
@@ -754,6 +734,17 @@
   function handleDeliveryAddon(cb) {
     const row = document.getElementById('delivery-addon-row');
     row.classList.toggle('checked', cb.checked);
+  }
+
+  function checkPickupDate(val) {
+    var warning = document.getElementById('pickup-warning');
+    var input = document.getElementById('pickup-date');
+    if (blockedDates.indexOf(val) !== -1) {
+      warning.style.display = 'block';
+      input.value = '';
+    } else {
+      warning.style.display = 'none';
+    }
   }
 
   function handleRushAddon(cb) {
