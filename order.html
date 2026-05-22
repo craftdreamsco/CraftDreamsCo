@@ -692,7 +692,7 @@
     const allFilled = required.every(v => v && v.trim() !== '');
     const pickupVal = document.getElementById('pickup-date').value;
     if (blockedDates.includes(pickupVal)) {
-      alert('The selected pickup date isn\'t available. Please choose a different date.');
+      alert('The selected pickup date is not available. Please choose a different date.');
       return;
     }
     if (!allFilled) {
