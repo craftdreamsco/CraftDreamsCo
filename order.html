@@ -389,12 +389,12 @@
       <div class="field">
         <label>Select a Theme <span class="required">*</span></label>
         <div class="theme-grid">
-          <div class="theme-pill" onclick="selectTheme(this)">🧜🏾‍♀️ Mermaid</div>
-          <div class="theme-pill" onclick="selectTheme(this)">🦄 Unicorn</div>
-          <div class="theme-pill" onclick="selectTheme(this)">🦕 Dinosaur</div>
-          <div class="theme-pill" onclick="selectTheme(this)">🚀 Space</div>
-          <div class="theme-pill" onclick="selectTheme(this)">⚽ Soccer</div>
-          <div class="theme-pill" onclick="selectTheme(this)">🚧 Construction</div>
+          <div class="theme-pill" data-key="Mermaid" onclick="selectTheme(this)">🧜🏾‍♀️ Mermaid</div>
+          <div class="theme-pill" data-key="Unicorn" onclick="selectTheme(this)">🦄 Unicorn</div>
+          <div class="theme-pill" data-key="Dinosaur" onclick="selectTheme(this)">🦕 Dinosaur</div>
+          <div class="theme-pill" data-key="Space" onclick="selectTheme(this)">🚀 Space</div>
+          <div class="theme-pill" data-key="Soccer" onclick="selectTheme(this)">⚽ Soccer</div>
+          <div class="theme-pill" data-key="Construction" onclick="selectTheme(this)">🚧 Construction</div>
           <div class="theme-pill" onclick="selectTheme(this)">💭 Other / Not sure yet</div>
         </div>
         <input type="hidden" id="theme-val">
@@ -528,37 +528,37 @@
 
   // ── THEME IMAGES ────────────────────────────────────────────
   const themeImages = {
-    '🧜🏾‍♀️ Mermaid': [
+    'Mermaid': [
       'https://craftdreamsco.github.io/CraftDreamsCo/Mermaid-Gable-Box.PNG',
       'https://craftdreamsco.github.io/CraftDreamsCo/Mermaid-All.PNG',
       'https://craftdreamsco.github.io/CraftDreamsCo/Mermaid-Stickers.PNG',
       'https://craftdreamsco.github.io/CraftDreamsCo/Mermaid-Colouring-Book.PNG',
     ],
-    '🦄 Unicorn': [
+    'Unicorn': [
       'https://craftdreamsco.github.io/CraftDreamsCo/Unicorn-Gable-Box.PNG',
       'https://craftdreamsco.github.io/CraftDreamsCo/Unicorn-All.PNG',
       'https://craftdreamsco.github.io/CraftDreamsCo/Unicorn-Stickers.PNG',
       'https://craftdreamsco.github.io/CraftDreamsCo/Unicorn-Colouring-Book.PNG',
     ],
-    '🦕 Dinosaur': [
+    'Dinosaur': [
       'https://craftdreamsco.github.io/CraftDreamsCo/Dino-Theme-Gable-Box.PNG',
       'https://craftdreamsco.github.io/CraftDreamsCo/Dino-Theme-All.PNG',
       'https://craftdreamsco.github.io/CraftDreamsCo/Dino-Theme-Stickers.PNG',
       'https://craftdreamsco.github.io/CraftDreamsCo/Dino-Theme-Colouring-Book.PNG',
     ],
-    '🚀 Space': [
+    'Space': [
       'https://craftdreamsco.github.io/CraftDreamsCo/Space-Theme-Gable-Box.PNG',
       'https://craftdreamsco.github.io/CraftDreamsCo/Space-Theme-All.PNG',
       'https://craftdreamsco.github.io/CraftDreamsCo/Space-Theme-Stickers.PNG',
       'https://craftdreamsco.github.io/CraftDreamsCo/Space-Theme-Colouring-Book.PNG',
     ],
-    '⚽ Soccer': [
+    'Soccer': [
       'https://craftdreamsco.github.io/CraftDreamsCo/Soccer-Theme-Gable-Box.PNG',
       'https://craftdreamsco.github.io/CraftDreamsCo/Soccer-Theme-All.PNG',
       'https://craftdreamsco.github.io/CraftDreamsCo/Soccer-Theme-Stickers.PNG',
       'https://craftdreamsco.github.io/CraftDreamsCo/Soccer-Theme-Colouring-Book.PNG',
     ],
-    '🚧 Construction': [
+    'Construction': [
       'https://craftdreamsco.github.io/CraftDreamsCo/Construction-Gable-Box.PNG',
       'https://craftdreamsco.github.io/CraftDreamsCo/Construction-All.PNG',
       'https://craftdreamsco.github.io/CraftDreamsCo/Construction-Stickers.PNG',
@@ -589,10 +589,11 @@
   function selectTheme(el) {
     document.querySelectorAll('.theme-pill').forEach(p => p.classList.remove('selected'));
     el.classList.add('selected');
+    const key = el.getAttribute('data-key');
     const theme = el.textContent.trim();
     const otherWrap = document.getElementById('theme-other-wrap');
     const otherText = document.getElementById('theme-other-text');
-    if (theme === '💭 Other / Not sure yet') {
+    if (!key) {
       otherWrap.style.display = 'block';
       document.getElementById('theme-val').value = '';
       otherText.focus();
@@ -600,7 +601,7 @@
       otherWrap.style.display = 'none';
       otherText.value = '';
       document.getElementById('theme-val').value = theme;
-      updateGallery(theme);
+      updateGallery(key);
     }
   }
 
