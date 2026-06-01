@@ -295,6 +295,38 @@
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
     background: linear-gradient(90deg, var(--coral), var(--pink), var(--turquoise));
   }
+
+  .snack-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    transition: border-color 0.2s;
+  }
+  .snack-row.active { border-color: var(--turquoise); background: rgba(46,196,182,0.05); }
+  .snack-info { flex: 1; }
+  .snack-label { font-weight: 800; font-size: 0.92rem; color: var(--dark); }
+  .snack-sub { font-size: 0.78rem; color: var(--mid); font-weight: 600; margin-top: 2px; }
+  .snack-stepper { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .snack-stepper button {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: white;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--mid);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    line-height: 1;
+  }
+  .snack-stepper button:hover { border-color: var(--turquoise); color: var(--turquoise); }
+  .snack-stepper span { font-weight: 900; font-size: 1.1rem; color: var(--dark); min-width: 16px; text-align: center; }
+
 </style>
 </head>
 <body>
@@ -398,15 +430,11 @@
           <div class="theme-pill" data-key="Soccer" onclick="selectTheme(this)">⚽ Soccer</div>
           <div class="theme-pill" data-key="Construction" onclick="selectTheme(this)">🚧 Construction</div>
           <div class="theme-pill" data-key="Rainbow" onclick="selectTheme(this)">🌈 Rainbow</div>
-          <div class="theme-pill" onclick="selectTheme(this)">💭 Other / Not sure yet</div>
         </div>
         <input type="hidden" id="theme-val">
-        <div id="theme-other-wrap" style="display:none; margin-top:12px;">
-          <input type="text" id="theme-other-text" placeholder="Tell us your theme idea! We'll reach out to discuss what's possible." oninput="document.getElementById('theme-val').value = 'Other: ' + this.value">
-        </div>
         <div class="theme-note">
-          🎉 More themes coming soon — including Basketball, Hockey &amp; more!<br><br>
-          💭 Have a theme in mind that's not listed? Select <strong>Other</strong> above and tell us your idea, or <a href="mailto:craftdreamsco@gmail.com">email us directly</a> — we'd love to chat!<br>
+          🎉 More themes coming soon!<br><br>
+          💭 Have a theme in mind that's not listed? Submit a <a href="inquiry.html" style="color:var(--coral);font-weight:800;text-decoration:none;">Custom Inquiry</a> and we'd love to chat about what's possible.<br>
           <span style="font-weight:400;">Please note: we can't replicate licensed characters (think Disney, Marvel, Paw Patrol, etc.). Original and custom themes are always welcome!</span>
         </div>
       </div>
@@ -479,6 +507,63 @@
         <textarea id="notes" placeholder="e.g. a specific colour preference, a name spelling to double-check, a small personal touch..."></textarea>
         <div class="helper">Special requests are always welcome and we'll do our best — please note they can't always be guaranteed.</div>
       </div>
+    </div>
+
+
+    <!-- SNACK SELECTION -->
+    <div class="card">
+      <div class="card-title">Snack Selection</div>
+      <p style="font-size:0.92rem;color:var(--mid);font-weight:600;line-height:1.7;margin-bottom:20px;">Choose <strong>2 snacks</strong> per bag from the options below. You can pick 2 of the same if preferred!</p>
+      <div id="snack-counter-display" style="text-align:center;margin-bottom:16px;">
+        <span class="price-callout" id="snack-count-text" style="background:linear-gradient(135deg,#aaa,#888);">0 of 2 selected</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="snack-row" id="snack-1">
+          <div class="snack-info">
+            <div class="snack-label">MadeGood Organic Granola Bites</div>
+            <div class="snack-sub">Chocolate Chip &nbsp;·&nbsp; nut &amp; gluten free</div>
+          </div>
+          <div class="snack-stepper">
+            <button type="button" onclick="adjustSnack('snack-1', -1)">−</button>
+            <span id="snack-1-count">0</span>
+            <button type="button" onclick="adjustSnack('snack-1', 1)">+</button>
+          </div>
+        </div>
+        <div class="snack-row" id="snack-2">
+          <div class="snack-info">
+            <div class="snack-label">MadeGood Organic Soft Baked Cookie Bites</div>
+            <div class="snack-sub">Red Velvet &nbsp;·&nbsp; nut &amp; gluten free</div>
+          </div>
+          <div class="snack-stepper">
+            <button type="button" onclick="adjustSnack('snack-2', -1)">−</button>
+            <span id="snack-2-count">0</span>
+            <button type="button" onclick="adjustSnack('snack-2', 1)">+</button>
+          </div>
+        </div>
+        <div class="snack-row" id="snack-3">
+          <div class="snack-info">
+            <div class="snack-label">MadeGood Organic Chewy Granola Bar</div>
+            <div class="snack-sub">Chocolate Chip &nbsp;·&nbsp; nut &amp; gluten free</div>
+          </div>
+          <div class="snack-stepper">
+            <button type="button" onclick="adjustSnack('snack-3', -1)">−</button>
+            <span id="snack-3-count">0</span>
+            <button type="button" onclick="adjustSnack('snack-3', 1)">+</button>
+          </div>
+        </div>
+        <div class="snack-row" id="snack-4">
+          <div class="snack-info">
+            <div class="snack-label">Goldfish Cheddar Crackers</div>
+            <div class="snack-sub">Contains wheat &amp; milk</div>
+          </div>
+          <div class="snack-stepper">
+            <button type="button" onclick="adjustSnack('snack-4', -1)">−</button>
+            <span id="snack-4-count">0</span>
+            <button type="button" onclick="adjustSnack('snack-4', 1)">+</button>
+          </div>
+        </div>
+      </div>
+      <input type="hidden" id="snack-val">
     </div>
 
     <!-- DEPOSIT -->
@@ -600,18 +685,8 @@
     el.classList.add('selected');
     const key = el.getAttribute('data-key');
     const theme = el.textContent.trim();
-    const otherWrap = document.getElementById('theme-other-wrap');
-    const otherText = document.getElementById('theme-other-text');
-    if (!key) {
-      otherWrap.style.display = 'block';
-      document.getElementById('theme-val').value = '';
-      otherText.focus();
-    } else {
-      otherWrap.style.display = 'none';
-      otherText.value = '';
-      document.getElementById('theme-val').value = theme;
-      updateGallery(key);
-    }
+    document.getElementById('theme-val').value = theme;
+    updateGallery(key);
   }
 
   function selectRef(el) {
@@ -714,6 +789,7 @@
     formData.append('Guest Names', guestNames);
     formData.append('Delivery', deliveryAddon ? 'Yes (+$10 — Pickering to Oshawa)' : 'No');
     formData.append('Rush Order', rushAddon ? 'Yes (+$15)' : 'No');
+    formData.append('Snack Selection', document.getElementById('snack-val').value);
     formData.append('Allergies / Dietary Restrictions', document.getElementById('allergies').value || 'None noted');
     formData.append('Additional Notes', document.getElementById('notes').value || 'None');
 
@@ -744,6 +820,50 @@
   function handleDeliveryAddon(cb) {
     const row = document.getElementById('delivery-addon-row');
     row.classList.toggle('checked', cb.checked);
+  }
+
+
+  var snackCounts = { 'snack-1': 0, 'snack-2': 0, 'snack-3': 0, 'snack-4': 0 };
+  var snackNames = {
+    'snack-1': 'MadeGood Granola Bites (Choc Chip)',
+    'snack-2': 'MadeGood Cookie Bites (Red Velvet)',
+    'snack-3': 'MadeGood Granola Bar (Choc Chip)',
+    'snack-4': 'Goldfish Cheddar Crackers'
+  };
+
+  function getSnackTotal() {
+    return Object.values(snackCounts).reduce(function(a,b){ return a+b; }, 0);
+  }
+
+  function adjustSnack(id, delta) {
+    var current = snackCounts[id];
+    var total = getSnackTotal();
+    var newVal = current + delta;
+    if (newVal < 0) return;
+    if (delta > 0 && total >= 2) return;
+    snackCounts[id] = newVal;
+    document.getElementById(id + '-count').textContent = newVal;
+    var row = document.getElementById(id);
+    row.classList.toggle('active', newVal > 0);
+    updateSnackDisplay();
+  }
+
+  function updateSnackDisplay() {
+    var total = getSnackTotal();
+    var el = document.getElementById('snack-count-text');
+    el.textContent = total + ' of 2 selected';
+    if (total === 2) {
+      el.style.background = 'linear-gradient(135deg, #2EC4B6, #22a89f)';
+    } else {
+      el.style.background = 'linear-gradient(135deg, #aaa, #888)';
+    }
+    var parts = [];
+    Object.keys(snackCounts).forEach(function(id) {
+      if (snackCounts[id] > 0) {
+        parts.push(snackCounts[id] + 'x ' + snackNames[id]);
+      }
+    });
+    document.getElementById('snack-val').value = parts.join(', ');
   }
 
   function checkPickupDate(val) {
