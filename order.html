@@ -472,15 +472,6 @@
       </div>
     </div>
 
-    <!-- ADD-ONS -->
-    <div class="card">
-      <div class="card-title">Add-Ons</div>
-      <div class="addon-row" id="delivery-addon-row">
-        <input type="checkbox" id="delivery-addon" onchange="handleDeliveryAddon(this)">
-        <div style="flex:1">
-          <div class="addon-label">🚗 Delivery</div>
-          <div class="addon-note">Available between Pickering and Oshawa</div>
-        </div>
         <div class="addon-price">+$10</div>
       </div>
 
@@ -494,30 +485,14 @@
       </div>
     </div>
 
-    <!-- ALLERGIES -->
+    <!-- SNACKS, ALLERGIES & NOTES -->
     <div class="card">
-      <div class="card-title">Allergies &amp; Notes</div>
-      <div class="field">
-        <label>Allergies or Dietary Restrictions</label>
-        <textarea id="allergies" placeholder="e.g. nut allergy, gluten free, no dairy — or leave blank if none"></textarea>
-        <div class="helper">Boxes include Goldfish crackers and MadeGood Red Velvet Cookies. Please note any allergies so we can accommodate.</div>
-      </div>
-      <div class="field">
-        <label>Anything Else We Should Know?</label>
-        <textarea id="notes" placeholder="e.g. a specific colour preference, a name spelling to double-check, a small personal touch..."></textarea>
-        <div class="helper">Special requests are always welcome and we'll do our best — please note they can't always be guaranteed.</div>
-      </div>
-    </div>
-
-
-    <!-- SNACK SELECTION -->
-    <div class="card">
-      <div class="card-title">Snack Selection</div>
-      <p style="font-size:0.92rem;color:var(--mid);font-weight:600;line-height:1.7;margin-bottom:20px;">Choose <strong>2 snacks</strong> per bag from the options below. You can pick 2 of the same if preferred!</p>
+      <div class="card-title">Snacks &amp; Allergies</div>
+      <p style="font-size:0.92rem;color:var(--mid);font-weight:600;line-height:1.7;margin-bottom:20px;">Each bag includes <strong>2 snacks</strong> from the options below. You can pick 2 of the same if preferred!</p>
       <div id="snack-counter-display" style="text-align:center;margin-bottom:16px;">
         <span class="price-callout" id="snack-count-text" style="background:linear-gradient(135deg,#aaa,#888);">0 of 2 selected</span>
       </div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
         <div class="snack-row" id="snack-1">
           <div class="snack-info">
             <div class="snack-label">MadeGood Organic Granola Bites</div>
@@ -564,6 +539,33 @@
         </div>
       </div>
       <input type="hidden" id="snack-val">
+      <div class="field">
+        <label>Allergies or Dietary Restrictions</label>
+        <textarea id="allergies" placeholder="e.g. nut allergy, gluten free, no dairy — or leave blank if none"></textarea>
+        <div class="helper">All MadeGood products are nut &amp; gluten free and made in a top-8 allergen-free facility. Goldfish crackers contain wheat and milk. Please note any allergies so we can accommodate.</div>
+      </div>
+    </div>
+
+    <!-- ADD-ONS -->
+    <div class="card">
+      <div class="card-title">Add-Ons</div>
+      <div class="addon-row" id="delivery-addon-row">
+        <input type="checkbox" id="delivery-addon" onchange="handleDeliveryAddon(this)">
+        <div style="flex:1">
+          <div class="addon-label">🚗 Delivery</div>
+          <div class="addon-note">Available between Pickering and Oshawa</div>
+        </div>
+
+    <!-- ANYTHING ELSE -->
+    <div class="card">
+      <div class="card-title">Anything Else?</div>
+      <div class="field">
+        <label>Anything Else We Should Know?</label>
+        <textarea id="notes" placeholder="e.g. a specific colour preference, a name spelling to double-check, a small personal touch..."></textarea>
+        <div class="helper">Special requests are always welcome and we'll do our best — please note they can't always be guaranteed.</div>
+      </div>
+    </div>
+
     </div>
 
     <!-- DEPOSIT -->
