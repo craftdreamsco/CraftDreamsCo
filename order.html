@@ -106,7 +106,7 @@
     <span style="color:#e0d5cc;">|</span>
     <a href="products.html" style="font-family:Nunito,sans-serif;font-weight:800;font-size:0.85rem;color:#2EC4B6;text-decoration:none;margin:0 8px;">Our Products</a>
     <span style="color:#e0d5cc;">|</span>
-    <a href="order.html" style="font-family:Nunito,sans-serif;font-weight:800;font-size:0.85rem;color:#FF6B6B;text-decoration:none;margin:0 8px;">Place an Order 🎁</a>
+    <a href="order.html" style="font-family:Nunito,sans-serif;font-weight:800;font-size:0.85rem;color:#FF6B6B;text-decoration:none;margin:0 8px;">Place an Order</a>
     <span style="color:#e0d5cc;">|</span>
     <a href="faq.html" style="font-family:Nunito,sans-serif;font-weight:800;font-size:0.85rem;color:#2EC4B6;text-decoration:none;margin:0 8px;">FAQ</a>
     <span style="color:#e0d5cc;">|</span>
@@ -398,7 +398,7 @@
     var scroll = document.getElementById('gallery-scroll');
     var images = themeImages[key];
     if (!images || images.length === 0) { gallery.classList.remove('visible'); return; }
-    scroll.innerHTML = images.map(src => '<img class="gallery-img" src="' + src + '" onclick="openLightbox('' + src + '')">').join('');
+    scroll.innerHTML = images.map(function(src){ return '<img class="gallery-img" src="' + src + '" onclick="openLightbox(\'' + src + '\')">'}).join('');
     gallery.classList.add('visible');
   }
 
